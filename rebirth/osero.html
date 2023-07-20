@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .board {
+          width: 700px;
+          display: grid;
+          grid-template-columns: repeat(8, 80px);
+          grid-template-rows: repeat(8, 80px);
+          gap: 1px;
+          background-color: #a73a3a;
+          /* border: 1px solid black; */
+        }
+        .cell {
+          background-color: #ccc;
+        }
+        .black {
+          background-color: #000;
+          border-radius: 50%;
+        }
+        .white {
+          background-color: #fff;
+          border-radius: 50%;
+        }
+      </style>
+</head>
+<body>
+  <h2 id="msg"></h2>
+    <div class="board"></div>
+    <script src="system.js"></script>
+    <!-- <script src="test.js"></script> -->
+</body>
+</html>

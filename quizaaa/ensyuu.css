@@ -1,0 +1,15 @@
+ul{
+    list-style: none;
+}
+ul li{
+    border: 1px solid black;
+    width: 200px;
+    height: 60px;
+    font-size: 40px;
+}
+.correct{
+    color: red;
+}
+.incorrect{
+    color: blue;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="buttonWrapper">
+        <button class="button" data-age="20">20歳以上</button>
+        <button class="button" data-age="30">30歳以上</button>
+        <button class="button" data-age="40">40歳以上</button>
+    </div>
+    <ul class="userList"></ul>
+    <script>
+        const userList = [
+            { name: '鈴木', age: 18 },
+            { name: '田中', age: 27 },
+            { name: '高橋', age: 32 },
+            { name: '佐藤', age: 45 },
+            { name: '近藤', age: 56 },
+        ]
+        document.querySelectorAll('.button').forEach((element) => {
+            element.addEventListener('click', (event) => {
+                onclickButton(event)
+                console.log(event)
+            })
+        })
+        const onclickButton = (event) => {
+            const button = event.target
+            const targetAge = button.dataset.age
+            const filterdList = userList.filter((data) => data.age >= targetAge)
+            updateList(filterdList)
+            console.log(button)
+            console.log(targetAge)
+            console.log(userList)
+            console.log(filterdList)
+        }
+        const updateList = (filterdList) => {
+            let listHtml = ''
+            for (const data of filterdList) {
+                listHtml += `<li>${data.name}:${data.age}歳</li>`
+            }
+            document.querySelector('.userList').innerHTML = listHtml
+        }
+        // const idList=[4,10,20]
+        // const userList=idList.map((value)=>`userid_${value}`)
+        // console.log(userList)
+
+        // const apiResponseData=[
+        //     {id:10,name:'鈴木'},
+        //     {id:21,name:'田中'},
+        //     {id:31,name:'高橋'}
+        // ]
+        // console.log(apiResponseData)
+        // const idTable=apiResponseData.map((value)=>value.id)
+        // console.log(idTable)
+        // console.log()
+    </script>
+</body>
+
+</html>

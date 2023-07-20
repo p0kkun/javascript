@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>click-game</title>
+</head>
+<style>
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 150px);
+      grid-template-rows: repeat(3, 150px);
+      gap: 2px;
+    }
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      background-color: #f2f2f2;
+      cursor: pointer;
+    }
+    .cell:hover {
+      background-color: #e0e0e0;
+    }
+    .message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+<body>
+    <div class="board">
+    <!-- 盤面のマス目を生成 -->
+    <!-- マス目にはcellクラスを付けます -->
+    </div>
+  <div class="message"></div>
+  <button onclick="resetGame()">もう一度する</button>
+      <script src="rennsyuu.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
+    <style>
+        h2 {
+            width: 540px;
+            height: 80px;
+            text-align: center;
+            font-family: 'Darumadrop One', cursive;
+
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(8, 70px);
+            grid-template-rows: repeat(8, 70px);
+            gap: 5px;
+            margin: 20px auto 20px auto;
+        }
+
+        .cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            padding: 0 0 0 0;
+            background-color: rgb(97, 80, 255);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cell {
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            cursor: pointer;
+        }
+
+        .color-white {
+            color: #fff;
+            /* 白色 */
+        }
+
+        /* 黒石のスタイル */
+        .color-black {
+            color: #000;
+            /* 黒色 */
+        }
+
+        .color {
+            margin: 0;
+        }
+
+        .color {
+            transition: color 0.3s ease;
+        }
+
+        .mark {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="playerText">★☆★☆</h2>
+    <div class="row"></div>
+    <p id="msg"></p>
+    <!-- <button id="reset">リセット</button> -->
+    <!-- <script src="bingo.js"></script> -->
+    <script src="othello.js"></script>
+</body>
+
+</html>

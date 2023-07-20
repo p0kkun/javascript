@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=DotGothic16&family=Mochiy+Pop+One&family=Noto+Sans+JP:wght@500&display=swap"
+    rel="stylesheet">
+  <title>Document</title>
+  <style>
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 150px);
+      grid-template-rows: repeat(3, 150px);
+      gap: 10px;
+      margin: 20px auto 20px auto;
+    }
+    
+
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      background-color: #cec9c9;
+      cursor: pointer;
+      box-shadow: 5px 5px 0 #b3b0b0;
+    }
+    p{
+      width: 100%;
+      height: 40px;
+      margin: 0;
+      margin-bottom: 10px;
+      padding: 0;
+    }
+    #msg {
+      font-family: 'Darumadrop One', cursive;
+      font-family: 'DotGothic16', sans-serif;
+      font-family: 'Mochiy Pop One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 30px;
+      color: blue;
+      text-shadow: 2px 2px 0 rgb(191, 186, 241);
+    }
+
+    #reset {
+      background-color: #e3364a;
+      /* 背景色 */
+      box-shadow: 0 5px 0 #ca1c30;
+      border-radius: 60px;
+      color: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Darumadrop One', cursive;
+      font-family: 'DotGothic16', sans-serif;
+      font-family: 'Mochiy Pop One', sans-serif;
+      font-family: 'Noto Sans JP', sans-serif;
+      width: 100px;
+      height: 40px;
+      margin: 0 0 0 30px;
+    }
+
+    #reset:hover {
+      opacity: 0.7;
+    }
+
+    #reset:active {
+      box-shadow: none;
+      transform: translateY(5px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="row">
+  </div>
+  <p id="msg"></p>
+  <button id="reset">リセット</button>
+  <script src="batu.js"></script>
+</body>
+
+</html>
