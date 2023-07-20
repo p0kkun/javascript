@@ -40,6 +40,10 @@ const WHITE = 'WHITE';
 const BLACK = 'BLACK';
 const board = document.querySelector('.row');
 const cells = [];
+//白石の個数
+let whiteCount = 2;
+// 黒石の個数
+let blackCount = 2;
 // 盤面を初期化する関数
 const makeBoard = () => {
   for (let i = 0; i < 64; i++) {
@@ -111,6 +115,7 @@ const move = (row, col) => {
   }
   return valid;
 };
+
 // 石を裏返すロジックを追加
 const flipStones = (row, col) => {
   const { color } = cells[row * 8 + col];
