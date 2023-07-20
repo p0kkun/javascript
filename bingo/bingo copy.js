@@ -8,7 +8,6 @@ const historyElement = document.querySelector("#history");
 const cells = []
 historyElement.textContent = "既出: "
 startButton.disabled = true 
-
 // ビンゴマス目の生成
 const usedNumbers = new Set()
 for (let i = 0; i < 25; i++) {
