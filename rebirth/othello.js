@@ -39,6 +39,9 @@ const EMPTY = '';
 const WHITE = 'WHITE';
 const BLACK = 'BLACK';
 const board = document.querySelector('.row');
+// プレイヤーを表示するためのコードを追加
+const playerTextElement = document.getElementById('playerText')
+const nowElement = document.getElementById('now');
 const cells = [];
 //白石の個数
 let whiteCount = 2;
@@ -115,7 +118,21 @@ const move = (row, col) => {
   }
   return valid;
 };
-
+// 白石と黒石の個数を更新する関数
+const updateStoneCount = () => {
+  let white = 0;
+  let black = 0;
+  for (const { color } of cells) {
+    if (color.classList.contains('color-white')) {
+      white++;
+    } else if (color.classList.contains('color-black')) {
+      black++;
+    }
+  }
+  whiteCount = white;
+  blackCount = black;
+  updatePlayerText();
+};
 // 石を裏返すロジックを追加
 const flipStones = (row, col) => {
   const { color } = cells[row * 8 + col];
@@ -143,8 +160,9 @@ const flipStones = (row, col) => {
             flippedStones.forEach((stone) => {
               stone.classList.replace(oppositeColor, currentColor);
             });
+            updateStoneCount(); // 石の個数を更新
           }, 200); // 200ミリ秒後に色を切り替える（アニメーションの時間と合わせる）
-        }
+        };
         break;
       } else if (color.classList.contains(oppositeColor)) {
         foundOpponent = true;
@@ -178,13 +196,13 @@ board.addEventListener('click', (event) => {
   }
   updatePlayerText()
 });
-// プレイヤーを表示するためのコードを追加
-const playerTextElement = document.getElementById('playerText')
+
 // 初期配置を反映
 makeBoard()
  // プレイヤーの表示を更新するための関数
- const updatePlayerText = () => {
+ const updatePlayerAndStoneCount = () => {
   playerTextElement.textContent = `現在のプレイヤー: ${currentPlayer === 'WHITE' ? '白' : '黒'}`;
+  nowElement.textContent = `白: ${whiteCount}個 | 黒: ${blackCount}個`;
 };
 // プレイヤーの表示を初期化
-updatePlayerText()
+updatePlayerAndStoneCount();
