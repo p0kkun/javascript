@@ -46,3 +46,4 @@ resetButton.addEventListener("click", () => {
 const checkBingo = () => {
   // ビンゴの判定ロジックはここに追加
 };
+//変更する
