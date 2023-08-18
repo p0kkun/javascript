@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <h1>天気予報</h1>
+<div id="weather"></div>
 <script>
     console.log('天気予報API')
-    console.log(fetch("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/130000.json"))
+    async function getData() {
+        const response = await fetch("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/300000.json")
+        const data = await response.json()
+        // console.log(response.json())
+        console.log(data)
+
+        console.log(data.text)
+        document.getElementById('weather').textContent = data.text
+    }
+    getData()
+
 </script>
+
 <body>
-    
+
 </body>
+
 </html>
