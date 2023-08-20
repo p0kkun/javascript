@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>本の検索</h1>
+    <div id="naratime"></div>
+    <div id="naraarea"></div>
+    <div id="naraweather"></div>
+    <script>
+        async function getNARAWeatherData() {
+            const response = await fetch("https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=JavaScript&booksGenreId=000&applicationId=1005578359620473177")
+            const data = await response.json()
+            console.log(data)
+            console.log(data.Items[0].Item)
+            document.getElementById('naraarea').textContent = data.Items[0].Item.author
+        document.getElementById('naratime').textContent = data.Items[0].Item.itemPrice
+
+        document.getElementById('naraweather').textContent = data.Items[0].Item.title
+        }
+        getNARAWeatherData()
+    </script>
+
+</body>
+
+</html>

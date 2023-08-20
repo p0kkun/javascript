@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=DotGothic16&family=Mochiy+Pop+One&family=Noto+Sans+JP:wght@500;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;500&family=Zen+Kaku+Gothic+New&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #naraarea {
+            border: solid 1px black;
+            text-align: center;
+            width: 30vw;
+            padding: 5px 0 5px 0;
+            font-size: 30px;
+            font-family: 'Noto Serif JP', serif;
+
+        }
+
+        #naratime {
+            text-align: center;
+            padding: 5px 0 5px 0;
+            width: 30vw;
+            border: solid 1px red;
+            font-size: 20px;
+            font-family: 'Darumadrop One', cursive;
+            font-family: 'DotGothic16', sans-serif;
+            font-family: 'Mochiy Pop One', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        #naraweather {
+            padding: 5px 0 5px 0;
+            border: solid 1px black;
+            width: 80vw;
+            /* height: 50vh; */
+            font-size: x-large;
+            font-family: 'Noto Serif JP', serif;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        #osakaarea {
+            border: solid 1px black;
+            padding: 5px 0 5px 0;
+            text-align: center;
+            width: 30vw;
+            font-size: 30px;
+            font-family: 'Noto Serif JP', serif;
+
+        }
+
+        #osakatime {
+            text-align: center;
+            padding: 5px 0 5px 0;
+            width: 30vw;
+            border: solid 1px red;
+            font-size: 20px;
+            font-family: 'Darumadrop One', cursive;
+            font-family: 'DotGothic16', sans-serif;
+            font-family: 'Mochiy Pop One', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        #osakaweather {
+            border: solid 1px black;
+            width: 80vw;
+            /* height: 50vh; */
+            font-size: x-large;
+            font-family: 'Noto Serif JP', serif;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+        }
+    </style>
+</head>
+<h1>天気予報</h1>
+<div id="naratime"></div>
+<div id="naraarea"></div>
+<div id="naraweather"></div>
+
+<div id="osakatime"></div>
+<div id="osakaarea"></div>
+<div id="osakaweather"></div>
+
+
+
+<script>
+    console.log('天気予報API')
+
+    const getWeatherData = async (url, areaId, timeId, weatherId) => {
+        const response = await fetch(url);
+        const data = await response.json();
+        const reportDate = new Date(data.reportDatetime);
+        const reportDateFormatted = reportDate.toLocaleDateString();
+        console.log(data);
+        console.log(reportDateFormatted);
+        console.log(data.reportDatetime);
+        console.log(data.publishingOffice);
+        console.log(data.targetArea);
+        console.log(data.text);
+        const createAndAppendElement = (parentId, text) => {
+            const element = document.createElement('p');
+            element.textContent = text;
+            document.getElementById(parentId).appendChild(element);
+        };
+        createAndAppendElement(areaId, `地域: ${data.targetArea}`);
+        createAndAppendElement(timeId, `日時:　 ${reportDateFormatted}`);
+        createAndAppendElement(weatherId, `天気: ${data.text}`);
+    };
+    const getNARAWeatherData = async () => {
+        await getWeatherData(
+            "https://www.jma.go.jp/bosai/forecast/data/overview_forecast/290000.json",
+            'naraarea',
+            'naratime',
+            'naraweather'
+        );
+    };
+    const getOSAKAWeatherData = async () => {
+        await getWeatherData(
+            "https://www.jma.go.jp/bosai/forecast/data/overview_forecast/270000.json",
+            'osakaarea',
+            'osakatime',
+            'osakaweather'
+        );
+    };
+    getNARAWeatherData();
+    getOSAKAWeatherData();
+
+    // async function getNARAWeatherData() {
+    //     const response = await fetch("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/290000.json")
+    //     const data = await response.json()
+    //     // console.log(response.json())
+    //     console.log(data)
+    //     const reportDate = new Date(data.reportDatetime);
+    //     const reportDateFormatted = reportDate.toLocaleDateString();
+    //     console.log(reportDateFormatted)
+    //     console.log(data.reportDatetime)
+    //     console.log(data.publishingOffice)
+    //     console.log(data.targetArea)
+    //     console.log(data.text)
+    //     document.getElementById('naraarea').textContent = data.targetArea
+    //     document.getElementById('naratime').textContent = reportDateFormatted
+    //     document.getElementById('naraweather').textContent = data.text
+    // }
+    // getNARAWeatherData()
+
+    // async function getOSAKAWeatherData() {
+    //     const response = await fetch("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/270000.json")
+    //     const data = await response.json()
+    //     // console.log(response.json())
+    //     console.log(data)
+    //     const reportDate = new Date(data.reportDatetime);
+    //     const reportDateFormatted = reportDate.toLocaleDateString();
+    //     console.log(reportDateFormatted)
+    //     console.log(data.reportDatetime)
+    //     console.log(data.publishingOffice)
+    //     console.log(data.targetArea)
+    //     console.log(data.text)
+    //     document.getElementById('osakaarea').textContent = data.targetArea
+    //     document.getElementById('osakatime').textContent = reportDateFormatted
+    //     document.getElementById('osakaweather').textContent = data.text
+    // }
+    // getOSAKAWeatherData()
+
+
+//     async function getWeatherData(url, areaId, timeId, weatherId) {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     const reportDate = new Date(data.reportDatetime);
+//     const reportDateFormatted = reportDate.toLocaleDateString();
+//     console.log(data);
+//     console.log(reportDateFormatted);
+//     console.log(data.reportDatetime);
+//     console.log(data.publishingOffice);
+//     console.log(data.targetArea);
+//     console.log(data.text);
+//     document.getElementById(areaId).textContent = data.targetArea;
+//     document.getElementById(timeId).textContent = reportDateFormatted;
+//     document.getElementById(weatherId).textContent = data.text;
+// }
+// async function getNARAWeatherData() {
+//     await getWeatherData(
+//         "https://www.jma.go.jp/bosai/forecast/data/overview_forecast/290000.json",
+//         'naraarea',
+//         'naratime',
+//         'naraweather'
+//     );
+// }
+// async function getOSAKAWeatherData() {
+//     await getWeatherData(
+//         "https://www.jma.go.jp/bosai/forecast/data/overview_forecast/270000.json",
+//         'osakaarea',
+//         'osakatime',
+//         'osakaweather'
+//     );
+// }
+// getNARAWeatherData();
+// getOSAKAWeatherData();
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Darumadrop+One&family=DotGothic16&family=Mochiy+Pop+One&family=Noto+Sans+JP:wght@500;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;500&family=Zen+Kaku+Gothic+New&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .book-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+}
+/* 著者名のスタイル */
+.book-container p.author {
+    font-weight: bold;
+    margin: 0;
+}
+/* タイトルのスタイル */
+.book-container p.title {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+/* 書籍説明のスタイル */
+.book-container p.itemCaption {
+    font-style: italic;
+    margin: 10px 0;
+}
+/* 出版社のスタイル */
+.book-container p.publisher {
+    margin: 0;
+}
+/* 価格のスタイル */
+.book-container p.price {
+    font-weight: bold;
+    margin: 10px 0;
+    color: #007bff;
+}
+    </style>
+</head>
+<h1>書籍</h1>
+<div id="naratime"></div>
+<div id="naraarea"></div>
+<div id="naraweather"></div>
+
+<div id="osakatime"></div>
+<div id="osakaarea"></div>
+<div id="osakaweather"></div>
+
+
+
+<script>
+    const displayBookInfo = (book) => {
+    const container = document.createElement('div');
+    container.className = 'book-container';
+    const author = document.createElement('p');
+    author.textContent = `著者: ${book.author}`;
+    const title = document.createElement('p');
+    title.textContent = `タイトル: ${book.title}`;
+    const itemCaption = document.createElement('p');
+    itemCaption.textContent = book.itemCaption;
+    const publisher = document.createElement('p');
+    publisher.textContent = `出版社: ${book.publisherName}`;
+    const price = document.createElement('p');
+    price.textContent = `価格: ${book.itemPrice}円`;
+    container.appendChild(author);
+    container.appendChild(title);
+    container.appendChild(itemCaption);
+    container.appendChild(publisher);
+    container.appendChild(price);
+    document.body.appendChild(container);
+};
+async function getNARAWeatherData() {
+    const response = await fetch("https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=JavaScript&booksGenreId=000&applicationId=1005578359620473177");
+    const data = await response.json();
+    const book = data.Items[0].Item;
+    console.log(data);
+    console.log(book);
+    displayBookInfo(book);
+}
+getNARAWeatherData();
+</script>
+
+<body>
+
+</body>
+
+</html>
