@@ -85,6 +85,7 @@
     container.appendChild(price);
     document.body.appendChild(container);
 };
+
 async function getNARAWeatherData() {
     const response = await fetch("https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404?format=json&keyword=JavaScript&booksGenreId=000&applicationId=1005578359620473177");
     const data = await response.json();
