@@ -10,6 +10,7 @@ const array = quiz.option
 const ulElement = document.querySelector('#option')
 const answer = quiz.ans
 
+
 for (let i = 0; i < array.length; i++) {
     const liElement = document.createElement("li")
     liElement.textContent = array[i]
